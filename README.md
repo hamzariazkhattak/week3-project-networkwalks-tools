@@ -1,110 +1,87 @@
-# week3-project-networkwalks-tools
+ <div align="center">
 
-&#x20;\<div align="center">
+# 🔐 PASSWORD CRACKING & HASH ANALYSIS
 
-\<!-- ═══════════ HEADER ═══════════ -->
+### John the Ripper | PDF Password Recovery
 
-# ☠️ CYBERSECURITY OPERATIONS
+**WEEK 03 — PROJECT MODULE 01**
 
-### `PASSWORD CRACKING & HASH ANALYSIS`
+![Kali Linux](https://img.shields.io/badge/Kali_Linux-557C94?style=flat-square&logo=kalilinux&logoColor=white)
+![John the Ripper](https://img.shields.io/badge/John_the_Ripper-000000?style=flat-square)
+![Dictionary Attack](https://img.shields.io/badge/Dictionary_Attack-red?style=flat-square)
+![Status](https://img.shields.io/badge/Status-Completed-00cc66?style=flat-square)
 
-```text
- ██████╗ ███████╗██████╗     ████████╗███████╗ █████╗ ███╗   ███╗
-██╔════╝ ██╔════╝██╔══██╗    ╚══██╔══╝██╔════╝██╔══██╗████╗ ████║
-██║  ███╗█████╗  ██████╔╝       ██║   █████╗  ███████║██╔████╔██║
-██║   ██║██╔══╝  ██╔══██╗       ██║   ██╔══╝  ██╔══██║██║╚██╔╝██║
-╚██████╔╝███████╗██║  ██║       ██║   ███████╗██║  ██║██║ ╚═╝ ██║
- ╚═════╝ ╚══════╝╚═╝  ╚═╝       ╚═╝   ╚══════╝╚═╝  ╚═╝╚═╝     ╚═╝
-```
+**Performed by Hamza Riaz**
 
-**`[ WEEK 03 ]` | `[ PROJECT MODULE 01 ]`**
+Cybersecurity Student | Ethical Hacking Enthusiast
 
-
-
-\
-
-
-```text
-[ SYSTEM STATUS ]     ONLINE
-[ OPERATION ]         PDF PASSWORD AUDITING
-[ ENVIRONMENT ]       AUTHORIZED LAB
-[ TRAINING ]          NETWORKWALKS
-[ MISSION STATUS ]    FLAG CAPTURED ✓
-```
-
-### 👨‍💻 OPERATOR INFORMATION
-
-**HAMZA RIAZ (Intern)**
-
-`Cybersecurity Student | Ethical Hacking Enthusiast`
-
-**Training Organization:** NETWORKWALKS
-**Batch:** [HAMZA RIAZ/ B084]
+**NETWORKWALKS** | Batch: **B084**  
 **Instructor:** WAQAS KARIM, CCIE
-**Project:** Week 03 – Module 01
 
-\</div>
+</div>
 
 ---
 
-## 💀 `0x01 // MISSION OVERVIEW`
+## 🟢 01. Mission Overview
 
-This repository documents a practical cybersecurity lab focused on **PDF password hash extraction and offline dictionary-based password cracking** using John the Ripper.
+This project demonstrates practical PDF password hash extraction and offline dictionary-based password cracking using **John the Ripper** on Kali Linux.
 
-The objective was to extract the cryptographic password hash from an encrypted PDF, analyze it using a password-cracking utility, recover the plaintext password, and successfully unlock the protected document.
+**Objective:** Extract the password hash from an encrypted PDF, perform a dictionary attack, recover the password, and unlock the protected document to capture the flag.
 
-```text
-┌───────────────────────────────────────────────────────────────┐
-│                                                               │
-│  [ TARGET ]     My Locked PDF1.pdf                            │
-│  [ TOOL ]       John the Ripper                               │
-│  [ EXTRACTOR ]  pdf2john                                      │
-│  [ WORDLIST ]   rockyou.txt                                   │
-│  [ ATTACK ]     Offline Dictionary Attack                    │
-│  [ RESULT ]     PASSWORD RECOVERED                            │
-│  [ OBJECTIVE ]  FIRST FLAG CAPTURED ✓                         │
-│                                                               │
-└───────────────────────────────────────────────────────────────┘
+| Mission Details | Information |
+|---|---|
+| Target | `My Locked PDF1.pdf` |
+| Operating System | Kali Linux |
+| Hash Extractor | pdf2john |
+| Cracking Tool | John the Ripper |
+| Wordlist | rockyou.txt |
+| Attack Type | Dictionary Attack |
+| Result | First Flag Captured |
+
+## ⚡ 02. Attack Workflow
+
+```mermaid
+flowchart TD
+    A[Encrypted PDF] --> B[pdf2john]
+    B --> C[Extracted Hash]
+    C --> D[John the Ripper]
+    E[rockyou.txt] --> D
+    D --> F[Password Recovered]
+    F --> G[Unlock PDF]
+    G --> H[Flag Captured]
+
+    style H fill:#006b35,color:#fff
+    style D fill:#222,color:#fff
 ```
 
-## 🛠️ `0x02 // ARSENAL & TOOLS USED`
+## 🛠️ 03. Tools & Technologies
 
-| Component        | Tool / Resource      | Purpose                      |
-| :--------------- | :------------------- | :--------------------------- |
-| Operating System | Kali Linux           | Security testing environment |
-| Hash Extraction  | `pdf2john`           | Extract PDF password hash    |
-| Cracking Engine  | John the Ripper      | Password recovery            |
-| Wordlist         | `rockyou.txt`        | Dictionary attack candidates |
-| Target           | `My Locked PDF1.pdf` | Encrypted PDF sample         |
-| Technique        | Dictionary Attack    | Offline password auditing    |
+| Tool | Purpose |
+|---|---|
+| Kali Linux | Penetration testing environment |
+| pdf2john | PDF hash extraction |
+| John the Ripper | Password cracking |
+| rockyou.txt | Dictionary wordlist |
 
-## ⚡ `0x03 // EXPLOITATION WORKFLOW`
+## 💻 04. Practical Execution
 
-### `STEP 01` — Target Acquisition
+### Step 01 — Hash Extraction
 
-Obtained the encrypted PDF file provided for the authorized Networkwalks training lab.
-
-**Target:** `My Locked PDF1.pdf`
-
-### `STEP 02` — Hash Extraction
-
-Used `pdf2john` to extract the PDF encryption hash.
+Extracted the password hash from the encrypted PDF.
 
 ```bash
 pdf2john "My Locked PDF1.pdf" > hash1.txt
 ```
 
-**Output:** Extracted hash saved in `hash1.txt`.
+### Step 02 — Wordlist Preparation
 
-### `STEP 03` — Wordlist Preparation
-
-Prepared the RockYou wordlist available in Kali Linux.
+Decompressed the RockYou wordlist.
 
 ```bash
 sudo gzip -d /usr/share/wordlists/rockyou.txt.gz
 ```
 
-### `STEP 04` — Dictionary Attack
+### Step 03 — Dictionary Attack
 
 Executed John the Ripper against the extracted hash.
 
@@ -112,93 +89,59 @@ Executed John the Ripper against the extracted hash.
 john --wordlist=/usr/share/wordlists/rockyou.txt hash1.txt
 ```
 
-### `STEP 05` — Password Recovery
+### Step 04 — Password Recovery
 
-Retrieved the recovered password using:
+Retrieved the recovered password.
 
 ```bash
 john --show hash1.txt
 ```
 
-### `STEP 06` — PDF Decryption & Flag Capture
+### Step 05 — PDF Decryption
 
-Used the recovered password to unlock the encrypted PDF and verified the successful flag confirmation.
+Used the recovered password to unlock the encrypted PDF and verify the flag.
 
-```text
-╔══════════════════════════════════════════════════════╗
-║                                                      ║
-║               [ ACCESS GRANTED ]                     ║
-║                                                      ║
-║       ✓ HASH EXTRACTION SUCCESSFUL                   ║
-║       ✓ PASSWORD RECOVERED                           ║
-║       ✓ PDF UNLOCKED                                  ║
-║       ✓ FIRST FLAG CAPTURED                           ║
-║                                                      ║
-║              MISSION COMPLETED                       ║
-║                                                      ║
-╚══════════════════════════════════════════════════════╝
-```
+<badge color="success">MISSION COMPLETED — FLAG 01 CAPTURED</badge>
 
-## 📸 `0x04 // DIGITAL EVIDENCE`
+## 📸 05. Evidence & Screenshots
 
-Screenshots documenting the actual practical execution.
+| Terminal — Password Cracking | PDF — Flag Confirmation |
+|---|---|
+| ![Terminal](screenshots/jtr-cracked.png) | ![Flag](screenshots/unlocked-pdf.png) |
 
-|   Hash Cracking   |  Flag Confirmation |
-| :---------------: | :----------------: |
-|                   |                    |
-| `jtr-cracked.png` | `unlocked-pdf.png` |
+## 🛡️ 06. Security Analysis
 
-## 🛡️ `0x05 // DEFENSIVE COUNTERMEASURES`
+**Key Learnings**
 
-- **Strong Passwords:** Avoid common passwords and predictable combinations.
-- **High Entropy:** Use long, unique passphrases.
-- **Modern Encryption:** Use strong PDF encryption configurations such as AES-256 where supported.
-- **Password Management:** Store credentials securely using trusted password managers.
-- **Security Awareness:** Understand how offline dictionary attacks can expose weak passwords.
+- Understanding PDF password protection and hash extraction.
+- Learning how offline dictionary attacks work.
+- Using John the Ripper for password auditing.
+- Understanding the risks of weak and predictable passwords.
+- Applying stronger password practices and modern encryption.
 
-## 🧠 `0x06 // KEY LEARNINGS`
+**Defensive Recommendations**
 
-Through this practical lab, I gained hands-on experience with:
+- Use long and unique passwords.
+- Avoid dictionary-based and predictable passwords.
+- Use trusted password managers.
+- Apply strong PDF encryption configurations such as AES-256.
 
-- Understanding PDF password protection.
-- Extracting cryptographic hashes using `pdf2john`.
-- Preparing and using the RockYou wordlist.
-- Performing offline dictionary attacks with John the Ripper.
-- Retrieving recovered passwords.
-- Understanding the security risks of weak passwords.
-- Learning defensive password security practices.
+## ⚠️ 07. Ethical Disclaimer
 
-## ⚠️ `0x07 // LEGAL DISCLAIMER`
+This project was performed strictly for educational and defensive cybersecurity learning purposes as part of the authorized **NETWORKWALKS** training program.
 
-```diff
-- UNAUTHORIZED ACCESS IS STRICTLY PROHIBITED.
-+ This project was performed for educational and defensive
-+ cybersecurity training purposes within an authorized
-+ Networkwalks laboratory environment.
-+
-+ All techniques must only be used on files and systems
-+ for which explicit permission has been granted.
-```
+All activities were conducted in a controlled lab environment. Never attempt password cracking on files or systems without explicit authorization.
 
 ---
 
-\<div align="center">
+<div align="center">
 
-## 👨‍💻 OPERATOR // HAMZA RIAZ KHATTAK
+### 👨‍💻 HAMZA RIAZ
 
 **CYBERSECURITY | ETHICAL HACKING | PENETRATION TESTING**
 
-`NETWORKWALKS` • `WEEK 03` • `PROJECT MODULE 01`
+`NETWORKWALKS` • `BATCH B084` • `WEEK 03`
 
-```text
-[ LEARN ]  →  [ PRACTICE ]  →  [ ANALYZE ]  →  [ SECURE ]
-```
+*Learn. Practice. Analyze. Secure.*
 
-**"Think Like an Attacker. Defend Like a Professional."**
-
-\
-
-
-⭐ **If you find this project useful, consider starring the repository!**
-
-\</div>
+</div>
